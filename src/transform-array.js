@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require('../lib');
 
 /**
  * Create transformed array based on the control sequences that original
@@ -14,35 +14,33 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function transform(arr) {
-  //throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
   if (!Array.isArray(arr)) {
-    throw new Error("'arr' parameter must be an instance of the Array!")
+    throw new Error("'arr' parameter must be an instance of the Array!");
   }
 
-  const modifiedArr = []
+  const modifiedArr = [];
 
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] == '--discard-next') {
-      i++
+      i++;
     } else if (arr[i] == '--discard-prev') {
-      if (i != 0 & modifiedArr.at(-1) == arr[i - 1]) {
-        modifiedArr.splice(i -1, 1)
+      if (i != 0 && modifiedArr.at(-1) == arr[i - 1]) {
+        modifiedArr.splice(modifiedArr.length - 1, 1);
       }
     } else if (arr[i] == '--double-next') {
       if (i != arr.length - 1) {
-        modifiedArr.push(arr[i + 1])
+        modifiedArr.push(arr[i + 1]);
       }
     } else if (arr[i] == '--double-prev') {
-      if (i != 0 & modifiedArr.at(-1) == arr[i - 1]) {
-        modifiedArr.push(arr[i - 1])
+      if (i != 0 && modifiedArr.at(-1) == arr[i - 1]) {
+        modifiedArr.push(arr[i - 1]);
       }
     } else {
-      modifiedArr.push(arr[i])
+      modifiedArr.push(arr[i]);
     }
   }
 
-  return modifiedArr
+  return modifiedArr;
 }
 
 module.exports = {

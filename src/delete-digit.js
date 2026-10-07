@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require('../lib');
 
 /**
  * Given some integer, find the maximal number you can obtain
@@ -12,19 +12,19 @@ const { NotImplementedError } = require('../extensions/index.js');
  *
  */
 function deleteDigit(n) {
-  let digits = n.toString().split('')
-  let numMax = 0
+  const digits = n.toString().split('');
+  let numMax = 0;
 
-  for(let i = 0; i < digits.length; i++) {
-    let digits2 = digits.slice()
-    digits2.splice(i, 1)
-    let num = parseInt(digits2.join(''))
+  for (let i = 0; i < digits.length; i++) {
+    const digits2 = digits.slice();
+    digits2.splice(i, 1);
+    const num = parseInt(digits2.join(''), 10);
 
     if (num > numMax) {
-      numMax = num
+      numMax = num;
     }
   }
-  return numMax
+  return numMax;
 }
 
 module.exports = {
